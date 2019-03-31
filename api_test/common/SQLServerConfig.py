@@ -1,8 +1,8 @@
-import pymssql
+# import pymssql
 import os
 import configparser as CP
 from pymssql import OperationalError
-from config import host,port,user,password,db_name,charset
+from api_test.readConfig import import host,port,user,password,db_name,charset
 
 
 class DB:
