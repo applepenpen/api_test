@@ -72,3 +72,13 @@ class RequestMethod:
         except TimeoutError:
             self.log.error('time out')
             return print('%s post request timeout' % self.url)
+
+
+    def get_method(self,method_name):
+        if method_name =='get':
+            self.get()
+        elif method_name=='post':
+            self.post()
+
+
+

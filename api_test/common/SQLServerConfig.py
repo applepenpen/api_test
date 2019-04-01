@@ -1,20 +1,28 @@
-# import pymssql
+import pymssql
 import os
 import configparser as CP
 from pymssql import OperationalError
-from api_test.readConfig import import host,port,user,password,db_name,charset
+from api_test.readConfig import ReadConfig
+# import host,port,user,password,db_name,charset
 
 
 class DB:
     def __init__(self):
+        self.host=ReadConfig.get_db('host')
+        self.username=ReadConfig.get_db('username')
+        self.port = ReadConfig.get_db('port')
+        self.password = ReadConfig.get_db('password')
+        self.db_name = ReadConfig.get_db('database')
+        self.charset = ReadConfig.get_db('charset')
+
         try:
-            self.conn=connect(
-                host=host,
-                port=int(port),
-                user=user,
-                password=password,
-                db=db_name,
-                charset=charset
+            self.conn=pymssql.connect(
+                host=self.host,
+                port=int(self.port),
+                user=self.username,
+                password=self.password,
+                db=self.db_name,
+                charset=self.charset
             )
         except OperationalError as e:
             print('SQl server error %d:%s'%(e.args[0],e.args[1]))
